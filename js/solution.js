@@ -13,7 +13,7 @@
         var islands = 0,
 			found_coordinates = [],
             map_heights = map.length,
-            map_lenghts = map[0].lenght;
+            map_lenghts = map[0].length;
             
         for (var i = 0; i < map_heights; i++) {
             for (var j = 0; j < map_lenghts; j++) {
