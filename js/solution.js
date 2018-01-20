@@ -19,24 +19,24 @@
             for (var j = 0; j < map_lenghts; j++) {
                 if (map[i][j] === 1) {
                     if (i === 0 and j === 0) { 
-                        islands++;
+                        islands += 1;
                         found_coordinates.push([i,j]);}
-                    elif ( i === 0 and [i,j-1] not in found_coordinates) {
-                        islands++;
+                    elif ( i === 0 and found_coordinates.indexOf([i,j-1]) = -1 {
+                        islands += 1;
                         found_coordinates.push([i,j]);}
-                    elif ( i === 0 and [i,j-1] in found_coordinates) {
+                    elif ( i === 0 and found_coordinates.indexOf([i,j-1]) != -1) {
                         found_coordinates.push([i,j]);}
                     else {
-						if ( j === 0 and [i-1,j] not in found_coordinates and map[i][j+1] !== 1 ) {
-							islands++;
+						if ( j === 0 and found_coordinates.indexOf([i-1,j]) = -1 and map[i][j+1] !== 1 ) {
+							islands += 1;
 							found_coordinates.push([i,j]);}
-						elif ( j === 0 and [i-1,j] in found_coordinates) {
+						elif ( j === 0 and found_coordinates.indexOf([i-1,j]) != -1) {
 							found_coordinates.push([i,j]);}
 						else {
-							if ( [i-1,j] in found_coordinates or [i,j-1] in found_coordinates or map[i][j+1] === 1 ) {
+							if ( found_coordinates.indexOf([i-1,j]) !=-1 or found_coordinates.indexOf([i,j-1]) != -1 or map[i][j+1] === 1 ) {
 								found_coordinates.push([i,j]);}
 							else { 
-								islands++;
+								islands += 1;
 								found_coordinates.push([i,j]);}
 						}
 					}
@@ -44,7 +44,7 @@
 			}
 		}
 			
-        return 0;
+        return islands;
     }
 
     root.SHRI_ISLANDS.solution = solution;
