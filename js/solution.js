@@ -18,22 +18,22 @@
         for (var i = 0; i < map_heights; i++) {
             for (var j = 0; j < map_lenghts; j++) {
                 if (map[i][j] === 1) {
-                    if (i === 0 and j === 0) { 
+                    if (i === 0 && j === 0) { 
                         islands++;
                         found_coordinates.push([i,j]);}
-                    else if ( i === 0 and found_coordinates.indexOf([i,j-1]) = -1 {
+                    else if ( i === 0 && found_coordinates.indexOf([i,j-1]) = -1 {
                         islands++;
                         found_coordinates.push([i,j]);}
-                    else if ( i === 0 and found_coordinates.indexOf([i,j-1]) != -1) {
+                    else if ( i === 0 && found_coordinates.indexOf([i,j-1]) != -1) {
                         found_coordinates.push([i,j]);}
                     else {
-						if ( j === 0 and found_coordinates.indexOf([i-1,j]) = -1 and map[i][j+1] != 1 ) {
+						if ( j === 0 && found_coordinates.indexOf([i-1,j]) = -1 && map[i][j+1] != 1 ) {
 							islands++;
 							found_coordinates.push([i,j]);}
-						else if ( j === 0 and found_coordinates.indexOf([i-1,j]) != -1) {
+						else if ( j === 0 && found_coordinates.indexOf([i-1,j]) != -1) {
 							found_coordinates.push([i,j]);}
 						else {
-							if ( found_coordinates.indexOf([i-1,j]) !=-1 or found_coordinates.indexOf([i,j-1]) != -1 or map[i][j+1] == 1 ) {
+							if ( found_coordinates.indexOf([i-1,j]) !=-1 || found_coordinates.indexOf([i,j-1]) != -1 || map[i][j+1] == 1 ) {
 								found_coordinates.push([i,j]);}
 							else { 
 								islands++;
