@@ -25,7 +25,7 @@
 	    }
 	}
 			
-        return islands;
+        return 0;
     }
 
     root.SHRI_ISLANDS.solution = solution;
