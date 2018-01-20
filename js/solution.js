@@ -21,16 +21,16 @@
                     if (i === 0 and j === 0) { 
                         islands++;
                         found_coordinates.push([i,j]);}
-                    elif ( i === 0 and found_coordinates.indexOf([i,j-1]) = -1 {
+                    else if ( i === 0 and found_coordinates.indexOf([i,j-1]) = -1 {
                         islands++;
                         found_coordinates.push([i,j]);}
-                    elif ( i === 0 and found_coordinates.indexOf([i,j-1]) != -1) {
+                    else if ( i === 0 and found_coordinates.indexOf([i,j-1]) != -1) {
                         found_coordinates.push([i,j]);}
                     else {
 						if ( j === 0 and found_coordinates.indexOf([i-1,j]) = -1 and map[i][j+1] !== 1 ) {
 							islands++;
 							found_coordinates.push([i,j]);}
-						elif ( j === 0 and found_coordinates.indexOf([i-1,j]) != -1) {
+						else if ( j === 0 and found_coordinates.indexOf([i-1,j]) != -1) {
 							found_coordinates.push([i,j]);}
 						else {
 							if ( found_coordinates.indexOf([i-1,j]) !=-1 or found_coordinates.indexOf([i,j-1]) != -1 or map[i][j+1] === 1 ) {
