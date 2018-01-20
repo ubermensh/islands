@@ -11,6 +11,7 @@
      */
     function solution(map) {
         var islands = 0,
+			found_coordinates = [],
             map_heights = map.length,
             map_lenghts = map[0].lenghts;
             
@@ -19,26 +20,30 @@
                 if (map[i][j] === 1) {
                     if (i === 0 and j === 0) { 
                         islands += 1;
-                        map[i][j] = 2;}
-                    elif ( i === 0 and map[i][j-1] !== 2) {
+                        found_coordinates.push([i,j]);}
+                    elif ( i === 0 and [i,j-1] not in found_coordinates) {
                         islands += 1;
-                        map[i][j] = 2;}
-                    elif ( i === 0 and map[i][j-1] === 2) {
-                        map[i][j] = 2;}
-                    elif ( i !== 0 and j === 0 map[i-1][j] !==2 ) {
-                        islands += 1;
-                        map[i][j] = 2;}
-                    elif ( i !== 0 and j === 0 and map[i-1][j] ===2) {
-                        map[i][j] = 2;}
-                    elif ( i !== 0 and j !== 0 ) {
-                        if ( map[i-1][j] == 2 or map [i][j-1] == 2 or map[i][j+1] == 1 ) {
-                            map[i][j] = 2;}
-                        else { islands += 1;
-                              map[i][j] = 2;}
-                    }
-                }
-            }
-        }
+                        found_coordinates.push([i,j]);}
+                    elif ( i === 0 and [i,j-1] in found_coordinates) {
+                        found_coordinates.push([i,j]);}
+                    else {
+						if ( j === 0 and [i-1,j] not in found_coordinates and map[i][j+1] !== 1 ) {
+							islands += 1;
+							found_coordinates.push([i,j]);}
+						elif ( j === 0 and [i-1,j] in found_coordinates) {
+							found_coordinates.push([i,j]);}
+						else {
+							if ( [i-1,j] in found_coordinates or [i,j-1] in found_coordinates or map[i][j+1] === 1 ) {
+								found_coordinates.push([i,j]);}
+							else { 
+								islands += 1;
+								found_coordinates.push([i,j]);}
+						}
+					}
+				}
+			}
+		}
+			
         return islands;
     }
 
