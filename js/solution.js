@@ -10,20 +10,7 @@
      * @returns {number} кол-во островов
      */
     function solution(map) {
-        var islands = 0,
-			found_coordinates = [],
-            map_heights = map.length,
-            map_lenghts = map[0].lenghts;
-            
-        for (var i = 0; i < map_heights; i++) {
-            for (var j = 0; j < map_lenghts; j++) {
-                if (map[i][j] === 1) {
-                    if (i === 0 && j === 0) { 
-                        islands++;
-                        found_coordinates.push([i,j]);}
-		}
-	    }
-	}
+        
 			
         return 0;
     }
