@@ -21,10 +21,10 @@
                     if (i === 0 && j === 0) { 
                         islands++;
                         found_coordinates.push([i,j]);}
-                    else if ( i === 0 && found_coordinates.indexOf([i,j-1]) == -1){
+                    else if ( i === 0 && found_coordinates.indexOf([i,j-1]) == -1) {
                         islands++;
                         found_coordinates.push([i,j]);}
-                    else if ( i === 0 && found_coordinates.indexOf([i,j-1]) != -1){
+                    else if ( i === 0 && found_coordinates.indexOf([i,j-1]) != -1) {
                         found_coordinates.push([i,j]);}
                     else {
 						if ( j === 0 && found_coordinates.indexOf([i-1,j]) == -1 && map[i][j+1] != 1 ) {
