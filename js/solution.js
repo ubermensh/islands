@@ -39,8 +39,8 @@
 						else if ( map[i][j+1] == 1 ) {
 							found_coordinates.push([i,j]);}
 						else {
-								islands++;
-								found_coordinates.push([i,j]);}
+							islands++;
+							found_coordinates.push([i,j]);}
 						
 					}
 				}
