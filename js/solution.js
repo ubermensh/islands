@@ -11,36 +11,34 @@
      */
     function solution(map) {
         var islands = 0,
+			map_c = [],
 			found_coordinates = [],
             map_heights = map.length,
             map_lenghts = map[0].length;
-            
+        
+		map_c = map;
         for (var i = 0; i < map_heights; i++) {
             for (var j = 0; j < map_lenghts; j++) {
-                if (map[i][j] === 1) {
+                if (map_c[i][j] === 1) {
                     if (i === 0 && j === 0) { 
                         islands++;
-                        found_coordinates.push([i,j]);}
-                    else if ( i === 0 && found_coordinates.indexOf([i,j-1]) == -1) {
+                        map_c[i][j] = 2;}
+                    else if ( i == 0 && map_c[i][j-1] != 2) {
                         islands++;
-                        found_coordinates.push([i,j]);}
-                    else if ( i === 0 && found_coordinates.indexOf([i,j-1]) != -1) {
-                        found_coordinates.push([i,j]);}
+                        map_c[i][j] = 2;}
+                    else if ( i == 0 && map_c[i][j-1] == 2 ) {
+                        map_c[i][j] = 2;}
                     else {
-						if ( j === 0 && found_coordinates.indexOf([i-1,j]) == -1 && map[i][j+1] != 1 ) {
+						if ( j == 0 && map_c[i-1][j] != 2 && map[i][j+1] != 1 ) {
 							islands++;
-							found_coordinates.push([i,j]);}
-						else if ( j === 0 && found_coordinates.indexOf([i-1,j]) != -1) {
-							found_coordinates.push([i,j]);}
-						else if ( found_coordinates.indexOf([i-1,j]) != -1 && map[i-1][j] == 1) {
-						found_coordinates.push([i,j]);}
-						else if ( found_coordinates.indexOf([i,j-1]) != -1 && map[i][j-1] == 1) {
-						found_coordinates.push([i,j]);}
-						else if ( map[i][j+1] == 1 ) {
-							found_coordinates.push([i,j]);}
+							map_c[i][j] = 2;}
+						else if ( j == 0 && map_c[i-1][j] == 2 ) {
+							map_c[i][j] = 2;}
+						else if ( map_c[i-1][j] == 2 || map[i][j-1] == 2 || map_c[i][j+1] == 1) {
+						map_c[i][j] = 2;}
 						else {
-							islands++;
-							found_coordinates.push([i,j]);}
+								islands++;
+								map_c[i][j] = 2;}
 						
 					}
 				}
