@@ -1,6 +1,8 @@
 (function (root) {
     var WATER = root.SHRI_ISLANDS.WATER;
     var ISLAND = root.SHRI_ISLANDS.ISLAND;
+    console.log(WATER);
+    console.log(ISLAND);
 
     /**
      * Функция находит кол-во островов на карте
@@ -10,6 +12,7 @@
      * @returns {number} кол-во островов
      */
     function solution(map) {
+        console.log(map);
         var islands = 0,
 			map_c = [],
 			found_coordinates = [],
