@@ -1,8 +1,6 @@
 (function (root) {
     var WATER = root.SHRI_ISLANDS.WATER;
     var ISLAND = root.SHRI_ISLANDS.ISLAND;
-    console.log(WATER);
-    console.log(ISLAND);
 
     /**
      * Функция находит кол-во островов на карте
@@ -12,12 +10,13 @@
      * @returns {number} кол-во островов
      */
     function solution(map) {
-        console.log(map);
+        console.log('sol', map);
         var islands = 0,
 			map_c = [],
 			found_coordinates = [],
             map_heights = map.length,
             map_lenghts = map[0].length;
+console.log('sol', map_heights, map_lenghts );
         
 		map_c = map;
         for (var i = 0; i < map_heights; i++) {
@@ -47,6 +46,7 @@
 				}
 			}
 		}
+        console.log('sol',islands );
 			
         return islands;
     }
