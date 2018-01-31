@@ -22,9 +22,6 @@
             y = index;
             row.forEach((val, index, rest) => {
                 x = index;
-                if (x == width) {
-                    x -= width;
-                }
                 isIsland(val);
             })
         });
