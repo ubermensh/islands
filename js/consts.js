@@ -12,5 +12,6 @@
         [0, 1, 0, 0]
     ];
 
+    console.log(SHRI_ISLANDS.MAP);
     root.SHRI_ISLANDS = SHRI_ISLANDS;
 })(this);
