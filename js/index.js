@@ -1,6 +1,5 @@
 (function (root) {
     var map = root.SHRI_ISLANDS.MAP;
-    console.log('index aaaa', map);
     var count = root.SHRI_ISLANDS.solution(map);
     //root.SHRI_ISLANDS.visualizeSolution(map);
 
