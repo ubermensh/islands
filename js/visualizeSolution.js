@@ -12,6 +12,8 @@
         const _map = root.SHRI_ISLANDS.copyMatrix(map);
         const height = _map.length;
         const width = _map[0].length;
+        //ms per point
+        const speed = 200;
         console.log(`height: ${height} width: ${width}`);
         let islandsCount = 0;
         //cartesian coordinates
@@ -24,8 +26,9 @@
                 console.log(`delayed fe : y: ${y} x: ${x} val: ${val} `);
                 isIsland(val);
                 _visualizeRender(_map, islandsCount);
-            },width * 1000);
-        }, height * 1500);
+            }, speed);
+            //so that all x axess will be traversed + time to destroy 
+        }, width * speed + 20);
 
         function isIsland(val) {
             console.log(`is island: y: ${y} x: ${x} `);
