@@ -41,11 +41,11 @@
                 //if it island, make it water, find its neighbours(silly), and destroy them recursively
                 if (_map[y][x] == ISLAND) {
                     _map[y][x] = WATER;
-                    const wright = [y, x + 1];
+                    const right = [y, x + 1];
                     const down = [y + 1, x];
                     const left = [y, x - 1];
                     const up = [y - 1, x];
-                    const neighbours = [wright, down, left, up];
+                    const neighbours = [right, down, left, up];
                     console.log(` destroy y: ${y} x: ${x} `);
                     console.log(neighbours);
                     return neighbours.forEach((coordinates) => {
