@@ -8,48 +8,53 @@
      * добавив функционал, который позволит пошагово визуализировать работу данного алгоритма.
      * Сигнатуру функции можно выбрать наиболее удобную для вашей визуализации
      */
-    function visualizeSolution(map) {
-        console.log('vis', map);
-        var islands = 0,
-            map_c = [],
-            found_coordinates = [],
-            map_heights = map.length,
-            map_lenghts = map[0].length;
-        
-console.log('sol', map_heights, map_lenghts );
-        map_c = map;
-        for (var i = 0; i < map_heights; i++) {
-            for (var j = 0; j < map_lenghts; j++) {
-                if (map_c[i][j] === 1) {
-                    if (i === 0 && j === 0) { 
-                        islands++;
-                        map_c[i][j] = 2;}
-                    else if ( i == 0 && map_c[i][j-1] != 2) {
-                        islands++;
-                        map_c[i][j] = 2;}
-                    else if ( i == 0 && map_c[i][j-1] == 2 ) {
-                        map_c[i][j] = 2;}
-                    else {
-                        if ( j == 0 && map_c[i-1][j] != 2 && map[i][j+1] != 1 ) {
-                            islands++;
-                            map_c[i][j] = 2;}
-                        else if ( j == 0 && map_c[i-1][j] == 2 ) {
-                            map_c[i][j] = 2;}
-                        else if ( map_c[i-1][j] == 2 || map[i][j-1] == 2 || map_c[i][j+1] == 1) {
-                        map_c[i][j] = 2;}
-                        else {
-                                islands++;
-                                map_c[i][j] = 2;}
-                        
-                    }
+    function visualizeSolution(map){
+        const _map = root.SHRI_ISLANDS.copyMatrix(map);
+        const height = _map.length;
+        const width = _map[0].length;
+        console.log(`height: ${height} width: ${width}`);
+        let islandsCount = 0;
+        //cartesian coordinates
+        let x, y;
+        _map.forEach((row, index, rest) => {
+            y = index;
+            row.forEach((val, index, rest) => {
+                x = index;
+                isIsland(val);
+            })
+        });
+
+        function isIsland(val) {
+            if (val == ISLAND) {
+                islandsCount += 1;
+                destroyIsland([y, x]);
+            }
+        };
+        //recursive
+        function destroyIsland(coordinates) {
+            let [y, x] = coordinates;
+            console.log(`y: ${y} x: ${x} `);
+            //if coordinates not out of bounds
+            if ((y >= 0 && y < height) && (x >= 0 && x < width)) {
+                //if it island, make it water, find its neighbours(silly), and destroy them recursively
+                if (_map[y][x] == ISLAND) {
+                    _map[y][x] = WATER;
+                    const right = [y, x + 1];
+                    const down = [y + 1, x];
+                    const left = [y, x - 1];
+                    const up = [y - 1, x];
+                    const neighbours = [right, down, left, up];
+                    console.log(` destroy y: ${y} x: ${x} `);
+                    console.log(neighbours);
+                    return neighbours.forEach((coordinates) => {
+                        destroyIsland(coordinates);
+                    });
                 }
             }
         }
-            
-        console.log('visualizeSolution ', islands );
-        return islands;
-
-    }
+        console.log('result', _map);
+        return islandsCount;
+    } 
 
     root.SHRI_ISLANDS.visualizeSolution = visualizeSolution;
 })(this);

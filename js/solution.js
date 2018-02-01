@@ -11,7 +11,7 @@
      *
      */
     function solution(map) {
-        const _map = _copyMatrix(map);
+        const _map = copyMatrix(map);
         const height = _map.length;
         const width = _map[0].length;
         console.log(`height: ${height} width: ${width}`);
@@ -58,7 +58,7 @@
         return islandsCount;
     }
 
-    function _copyMatrix(matrix) {
+    function copyMatrix(matrix) {
         var result = matrix.map(function(arr) {
             return arr.slice();
         });
@@ -66,4 +66,5 @@
     }
 
     root.SHRI_ISLANDS.solution = solution;
+    root.SHRI_ISLANDS.copyMatrix = copyMatrix;
 })(this);
