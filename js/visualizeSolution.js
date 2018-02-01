@@ -27,6 +27,7 @@
         function isIsland(val) {
             if (val == ISLAND) {
                 islandsCount += 1;
+                _visualizeRender(_map, islandsCount);
                 destroyIsland([y, x]);
             }
         };
@@ -55,6 +56,22 @@
         console.log('result', _map);
         return islandsCount;
     } 
+    function _pause(milliseconds) {
+        var dt = new Date();
+        while ((new Date()) - dt <= milliseconds) { /* Do nothing */ }
+    }
+
+    function _visualizeRender(_map, islandsCount) {
+        _pause(1000);
+        let outerElement = document.querySelector('.outer');
+        let oldMapElement= document.querySelector('.map');
+        let newMapElement=  root.SHRI_ISLANDS.render(_map, islandsCount);
+        //replace map
+        if (oldMapElement){
+            outerElement.removeChild(oldMapElement);
+        }
+        outerElement.appendChild(newMapElement);
+    }
 
     root.SHRI_ISLANDS.visualizeSolution = visualizeSolution;
 })(this);
