@@ -16,30 +16,37 @@
         let islandsCount = 0;
         //cartesian coordinates
         let x, y;
-        _map.forEach((row, index, rest) => {
+        _map.delayedForEach((row, index, rest) => {
             y = index;
-            row.forEach((val, index, rest) => {
+            console.log('y: ',  y);
+            row.delayedForEach((val, index, rest) => {
                 x = index;
+                console.log(`delayed fe : y: ${y} x: ${x} val: ${val} `);
                 isIsland(val);
-            })
-        });
+                _visualizeRender(_map, islandsCount);
+            },width * 1000);
+        }, height * 1500);
 
         function isIsland(val) {
+            console.log(`is island: y: ${y} x: ${x} `);
             if (val == ISLAND) {
+                console.log(`island found: y: ${y} x: ${x} `);
                 islandsCount += 1;
-                _visualizeRender(_map, islandsCount);
+                //_visualizeRender(_map, islandsCount);
                 destroyIsland([y, x]);
             }
         };
         //recursive
         function destroyIsland(coordinates) {
             let [y, x] = coordinates;
-            console.log(`y: ${y} x: ${x} `);
+            //console.log(`destroy attempt  y: ${y} x: ${x} `);
             //if coordinates not out of bounds
             if ((y >= 0 && y < height) && (x >= 0 && x < width)) {
                 //if it island, make it water, find its neighbours(silly), and destroy them recursively
                 if (_map[y][x] == ISLAND) {
+                console.log(`destroy island y: ${y} x: ${x} `);
                     _map[y][x] = WATER;
+                    //_visualizeRender(_map, islandsCount);
                     const right = [y, x + 1];
                     const down = [y + 1, x];
                     const left = [y, x - 1];
@@ -56,13 +63,29 @@
         console.log('result', _map);
         return islandsCount;
     } 
-    function _pause(milliseconds) {
-        var dt = new Date();
-        while ((new Date()) - dt <= milliseconds) { /* Do nothing */ }
-    }
 
-    function _visualizeRender(_map, islandsCount) {
-        _pause(1000);
+	//https://gist.github.com/fernandosavio/6011834
+	/**
+	 * An array forEach with a delay between steps.
+	 *
+	 * @param {Function} callback Function to execute for each element. It receives three arguments, the element value, the element index and the array being traversed, respectivily.
+	 * @param {Number} timeout Number of milliseconds that the function call should be delayed by.
+	 * @param {Object} thisArg Object to use as this when executing callback.
+	 * @this {Array}
+	 * @return {undefined}
+	 */
+	Array.prototype.delayedForEach = function(callback, timeout, thisArg) {
+	    var i = 0,
+	        l = this.length,
+	        self = this,
+	        caller = function() {
+	            callback.call(thisArg || self, self[i], i, self);
+	            (++i < l) && setTimeout(caller, timeout);
+	        };
+	    caller();
+	};
+     function _visualizeRender(_map, islandsCount) {
+        //_pause(1000);
         let outerElement = document.querySelector('.outer');
         let oldMapElement= document.querySelector('.map');
         let newMapElement=  root.SHRI_ISLANDS.render(_map, islandsCount);
