@@ -1,6 +1,7 @@
 (function (root) {
     var WATER = root.SHRI_ISLANDS.WATER;
     var ISLAND = root.SHRI_ISLANDS.ISLAND;
+    const ITERATOR = root.SHRI_ISLANDS.ITERATOR;
 
     /**
      * Бонусное задание.
@@ -25,6 +26,7 @@
                 x = index;
                 console.log(`delayed fe : y: ${y} x: ${x} val: ${val} `);
                 isIsland(val);
+                _map[y][x] = ITERATOR;
                 _visualizeRender(_map, islandsCount);
             }, speed);
             //so that all x axess will be traversed + time to destroy 

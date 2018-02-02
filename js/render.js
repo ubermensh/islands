@@ -1,6 +1,7 @@
 (function (root) {
     var WATER = root.SHRI_ISLANDS.WATER;
     var ISLAND = root.SHRI_ISLANDS.ISLAND;
+    const ITERATOR = root.SHRI_ISLANDS.ITERATOR;
 
     /**
      * Создает HTML элемент заданного типа с заданным CSS классом
@@ -53,6 +54,10 @@
 
                     case ISLAND:
                         type = 'island';
+                        break;
+
+                    case ITERATOR:
+                        type ='iterator';
                         break;
 
                     default:
