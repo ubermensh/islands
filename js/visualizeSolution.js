@@ -15,7 +15,7 @@
         const height = _map.length;
         const width = _map[0].length;
         //ms per point
-        const speed = 100;
+        const speed = 30;
         console.log(`height: ${height} width: ${width}`);
         let islandsCount = 0;
         //cartesian coordinates
@@ -32,7 +32,7 @@
             //so that all x axess will be traversed + time to destroy  
             //time to destroy = костыль, который можно сломать большим островом. по хорошему, дестрой должен быть асинхроным, и процесс должен ждать ее завершения
             // тогда можно было бы визуализировать процесс уничтожения, but who cares
-        }, width * speed + 20);
+        }, width * speed + 600);
 
         function isIsland(val) {
             console.log(`is island: y: ${y} x: ${x} `);
