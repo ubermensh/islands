@@ -41,5 +41,8 @@ body {
 }
 
 .map__cell_iterator {
+    background-color: green;
+}
+.map__cell_destroy {
     background-color: red;
 }

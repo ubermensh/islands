@@ -2,6 +2,7 @@
     var WATER = root.SHRI_ISLANDS.WATER;
     var ISLAND = root.SHRI_ISLANDS.ISLAND;
     const ITERATOR = root.SHRI_ISLANDS.ITERATOR;
+    const DESTROY = root.SHRI_ISLANDS.DESTROY;
 
     /**
      * Бонусное задание.
@@ -14,22 +15,23 @@
         const height = _map.length;
         const width = _map[0].length;
         //ms per point
-        const speed = 200;
+        const speed = 100;
         console.log(`height: ${height} width: ${width}`);
         let islandsCount = 0;
         //cartesian coordinates
         let x, y;
         _map.delayedForEach((row, index, rest) => {
             y = index;
-            console.log('y: ',  y);
             row.delayedForEach((val, index, rest) => {
                 x = index;
-                console.log(`delayed fe : y: ${y} x: ${x} val: ${val} `);
                 isIsland(val);
                 _map[y][x] = ITERATOR;
                 _visualizeRender(_map, islandsCount);
+                _map[y][x] = WATER;
             }, speed);
-            //so that all x axess will be traversed + time to destroy 
+            //so that all x axess will be traversed + time to destroy  
+            //time to destroy = костыль, который можно сломать большим островом. по хорошему, дестрой должен быть асинхроным, и процесс должен ждать ее завершения
+            // тогда можно было бы визуализировать процесс уничтожения, but who cares
         }, width * speed + 20);
 
         function isIsland(val) {
@@ -37,7 +39,7 @@
             if (val == ISLAND) {
                 console.log(`island found: y: ${y} x: ${x} `);
                 islandsCount += 1;
-                //_visualizeRender(_map, islandsCount);
+                console.log('islandsCount',islandsCount );
                 destroyIsland([y, x]);
             }
         };
@@ -50,18 +52,17 @@
                 //if it island, make it water, find its neighbours(silly), and destroy them recursively
                 if (_map[y][x] == ISLAND) {
                 console.log(`destroy island y: ${y} x: ${x} `);
-                    _map[y][x] = WATER;
-                    //_visualizeRender(_map, islandsCount);
+                    _map[y][x] = DESTROY;
                     const right = [y, x + 1];
                     const down = [y + 1, x];
                     const left = [y, x - 1];
                     const up = [y - 1, x];
                     const neighbours = [right, down, left, up];
                     console.log(` destroy y: ${y} x: ${x} `);
-                    console.log(neighbours);
                     return neighbours.forEach((coordinates) => {
                         destroyIsland(coordinates);
-                    });
+                        _visualizeRender(_map, islandsCount);
+                    } );
                 }
             }
         }
