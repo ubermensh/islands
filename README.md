@@ -17,3 +17,5 @@
 ```
 
 Результат: `4`
+
+![islands](islands.png?raw=true "Islands")
